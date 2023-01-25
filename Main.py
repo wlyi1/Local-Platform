@@ -77,7 +77,7 @@ df_12 = []
 df_16 = []
 df_dlh = []
 
-for dfx in id_list[:10]:
+for dfx in id_list[:15]:
     ID = files_id[files_id['CODE'] == dfx].index.values + 11
     globals() [f'query_{dfx}'] = f"""select pH, DO, Cond, Turb, Temp, NH4,NO3,ORP,COD,BOD,TSS,logTime as NH3_N,logDate, datepart(hour, logTime) as logTime from data where Station={int(ID)} order by logDate,logTime"""
     globals() [f'{dfx}'] = pd.read_sql(globals() [f'query_{dfx}'], engine)
@@ -99,7 +99,7 @@ st.image(image)
 ol_16, ol_21, ol_12, ol_dlh = st.tabs(['ONLIMO 16 🌐', 'ONLIMO 21 💠', 'ONLIMO 12 🌀', 'ONLIMO DLH 📮'])   
 with ol_21:
     
-    for i in id_list[:10]:
+    for i in id_list[:15]:
         status_onlimo(i)
 
 with ol_12:
